@@ -12,8 +12,6 @@ Everyone will get a chance to **be creative**, and work through some really **
 
 As a reminder, GA has a zero plagiarism policy - your project's code **must be substantially yours**. **Do not copy code from other similar projects or other sources**. However, using lines of code from StackOverflow to accomplish general techniques/algorithms is okay - an example would be using StackOverflow as a source for code that replaces a character at a certain position in a string.
 
-Lastly, after presenting your projects next Friday, you will be required to complete a Project 1 Assessment (more in a bit).
-
 ---
 
 ## **Planning & Presentation Requirements**
