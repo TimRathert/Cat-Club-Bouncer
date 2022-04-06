@@ -134,7 +134,6 @@ You will have a maximum of 10 minutes to present your project following these gu
 - **Commit early, commit often.** Don’t be afraid to break something because you can always go back in time to a previous version.
 - **Consult documentation and other resources** to better understand methods, etc.
 - Write **DRY (Don't Repeat Yourself)** code. Check for repeating code and refactor into functions that accept arguments.
-- Be sure to review the [Peer Code Review Checklist](https://git.generalassemb.ly/seir-1213-staging/Project-1-Intro/blob/master/p1-peer-code-review.md) for important tips - your code will be evaluated using this checklist.
 
 ---
 
