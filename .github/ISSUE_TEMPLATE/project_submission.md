@@ -1,11 +1,12 @@
 ---
-name: 'Project 1 Submission '
+name: 'Project 1 Submission'
 about: Issue for submitting your Project 1
-title: YOUR NAME-SECTION-PROJECT-NAME
+title: SUBMISSION-YOUR NAME-SECTION
 labels: ''
 assignees: ''
 
 ---
+### Your project name
 
 ### Link to your GH repository
 
