@@ -16,7 +16,7 @@ As a reminder, GA has a zero plagiarism policy - your project's code **must be 
 
 ## **Planning & Presentation Requirements**
 
-### **Planning - Due By EOD April 6, 2022**
+### **Planning - Due By BOD August 8, 2022**
 
 - You will share:
     
@@ -25,9 +25,8 @@ As a reminder, GA has a zero plagiarism policy - your project's code **must be 
     ☐ A wireframe of your "main" game screen. (Many students find [https://www.figma.com/](https://www.figma.com/) helpful)
     
     ☐ Pseudocode for the overall gameplay.
-    
 
-### **Presentation - Wednesday, April 13th:**
+### **Presentation - Friday, August 12th:**
 
 You will have a maximum of 10 minutes to present your project following these guidelines:
 
@@ -106,6 +105,7 @@ You will have a maximum of 10 minutes to present your project following these gu
 
 > Note: Games are listed in approximate order of increasing difficulty.
 > 
+0. **Tamagotchi**
 1. **Trivia game**
 2. **War** (the card game)
 3. **Blackjack**
