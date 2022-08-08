@@ -11,8 +11,39 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Oswald:wght@300&display=swap');
+            </style>
     </head>
     <body>
+        <div class ="catID-wrapper">
+            <img id="watermark" src=id-pics/pawprint.jpg> 
+            <img class ="id-photo">
+           <div class = "id-name"></div>
+           <div class = "id-attributes-wrapper">
+                <ul class ="id-attributes-list">
+                    <li><strong>Age:</strong> <div class="vardata idAge"></div></li>
+                    <li><strong>Fur:</strong><div class="vardata idFur"></div><div></li>
+                    <li><strong>Eye Color:</strong>:<div class="vardata idEyeColor"></div></li>              
+               </ul>
+           </div>
+           
+        </div>
+        <div class = "button-wrapper">
+            <button type="submit" class="buttons allow">Allow Entry</button>
+            <button type="submit" class ="buttons deny">Deny Entry</button>
+            <button type="submit" class ="buttons start">Get Started</button>
+
+        </div>
+         <div class ="criteria-wrapper">
+            <div class="criteria"> 
+                <p class = "criteria-text"></p>
+                <p class="response"></p>
+
+            </div>
+         </div>
+
+
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->

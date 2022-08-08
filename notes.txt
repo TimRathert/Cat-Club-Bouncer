@@ -1,4 +1,4 @@
-You are a bouncer at a club for cats. Your job is to make sure the only people getting in, are the ones we allow to do so. Sounds easy enough, but kittens these days are desperate for catnip and are meticulous in creating fake IDs. That's why we've hired you. Keep the riff-ruff out.
+You are a bouncer at a club for cats. Your job is to make sure the only cats getting in, are the ones we allow to do so. Sounds easy enough, but kittens these days are desperate for catnip and are meticulous in creating fake IDs. That's why we've hired you. Keep the riff-ruff out.
 
 Customers will present you with their ID. Inspect each ID carefully to ensure that only the right people get in. No fakes IDs, either! If you think a customer meets the requirements, let them in. If not, turn them away.
 

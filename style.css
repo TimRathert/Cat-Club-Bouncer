@@ -1,0 +1,124 @@
+body{
+    font-family: 'mouse memoirs', Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: min-content 20% 20% 20% 20%;
+    grid-template-rows: min-content min-content min-content ;
+}
+.catID-wrapper{
+    border: 1px solid black;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 75% 25%;
+    height:10em;
+    width: 17em;
+    background:linear-gradient(#999999, #CCCCCC);
+    overflow: hidden;
+    position: relative;
+    
+}
+#watermark{
+    
+    position: absolute;
+    }
+
+.id-photo{
+    grid-column: 1;
+    width: 60%;
+    padding: 1em;
+    max-width: 120px;
+    max-height: 120px;
+    overflow: hidden;
+}
+.id-name{
+    grid-column: 1;
+    grid-row: 2;
+    margin-left: 10%;
+    margin-top:10%;
+}
+.id-attributes-wrapper{
+   /*  border: 1px solid black; */
+    grid-column: 2;
+}
+.id-attributes-list{
+    margin-right: 1em;
+    
+}
+
+.id-attributes-list > .vardata{
+
+}
+
+.button-wrapper{
+    grid-row: 2;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    justify-items: center;
+    margin: 1em;   
+}
+.start{
+    margin-left: 40px;
+}
+
+.criteria-wrapper{
+    height: 150px;
+    border: 1px solid black;
+    grid-column: 1;
+    grid-row:3;
+    overflow: hidden;
+    font-size: 24px;
+    animation-duration: 2s;
+    animation-name: overlapper;
+}
+@keyframes overlapper{
+    from{
+       overflow: hidden;
+        
+    }
+    50%{      
+        overflow: visible;
+    }
+    99%{
+        overflow: visible;
+    }
+    to{
+        overflow:hidden;
+    }
+}
+.criteria{
+    margin-top: 0;
+}
+.criteria-text{
+    
+    animation-duration: 2s;
+    animation-name: typewriter;
+    margin: 0 auto;
+}
+
+@keyframes typewriter{
+    from{
+       opacity: 0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}
+.response {
+  /*   animation-play-state:paused;
+    animation:none;
+    animation-duration: 2s;
+    animation-name: fadeText; */
+    }
+
+/* @keyframes fadeText{
+    from{
+        opacity: 1;
+    }
+   to {
+        opacity:0;
+        
+}
+} */
