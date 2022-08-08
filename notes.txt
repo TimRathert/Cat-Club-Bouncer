@@ -1,0 +1,84 @@
+You are a bouncer at a club for cats. Your job is to make sure the only people getting in, are the ones we allow to do so. Sounds easy enough, but kittens these days are desperate for catnip and are meticulous in creating fake IDs. That's why we've hired you. Keep the riff-ruff out.
+
+Customers will present you with their ID. Inspect each ID carefully to ensure that only the right people get in. No fakes IDs, either! If you think a customer meets the requirements, let them in. If not, turn them away.
+
+**Psuedo**
+
+Create cat objects with[Name, Age, Species, Height, Fur color, etc] and match them against dynamically generated criteria. If your accuracy drops below a certain number for 2 days, you're fired.
+
+
+Cat Objects vs Reference Object(random values). Values fed to player who has to check the criteria. Scored after 5 rounds (the end of each work day). If match accuracy drops below a certain percentage, game over.
+
+
+Cat
+    Name   
+    Age
+    Species
+    Height
+    Fur color
+    Eye color
+    ?
+
+Reference 
+    expands cat?
+    RNG cat generator LOL
+    randomly generated values to check against
+    dynamically add more? 1/'day'(round)?
+        increment values so the criteia ranges grow progressively more narrow
+    
+Game flow
+    start
+        Prompt with basic instructions
+    presented with criterea on screen
+    presented with ID and cat picture
+        Let them in? Click appropriate button
+    next
+    aftter 5 cats, work day ends and score is checked. If it is 60% or less for two days in a row, you're fired. Check dayFailed after each round.
+    start next round(matching for 5 rounds)
+        check score/gameover    
+
+game states
+    title
+        instructions
+    start round
+        begin with static criteria
+        dynamic generation of cat or criteria content?
+            if cat - choose random numers to select values from array of values
+            if criteria - perhaps function to generate a filter of what not to allow
+    active
+        player "does ID match cat?" (is it a fake).
+        player "does ID meet criteria?" (old enough? etc)
+            selecting
+                allow entry
+                deny entry
+                    If
+
+    end of round
+        check if daysFailed =2{return gameOver = true}
+        else{increment more and stricter criteria}
+    start round
+    active
+    end of round
+
+    Game over - same as end of round state? 
+        when daysFailed = 2, set state gameOver = true
+        Do NOT start new round
+        Present days completed & option to try again
+    
+    
+    goals
+        1) Make Cat Cards (start static)
+        2) Make criteria (start static)
+        3) test cards vs criteria [active state] - start with age & fake ID as criteria.
+        4) css layout (see figma for notes)
+        5) [intro state] / title screen (functionality)
+        6) [start round state] - pull cats and criteria (start static) {maybe text: 'welcome to work'}
+        7) 'round tracker for [end-of-round state](functionality)
+        8) [end-of-round state] screen (CSS)
+        9) [game over state] / screen
+        10) expand criteria (static iteration or rng) - tie to [round start state]
+        11) variance in cat cards - tie to [round start state]
+        12) turn timer
+        13) dynamic criteria generation (incremented to increase difficulty)
+        14) dynamic cat generation
+         
