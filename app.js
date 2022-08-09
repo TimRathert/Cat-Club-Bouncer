@@ -32,9 +32,8 @@ class CatID {
         this.isCat = isCat;
         this.name;
         this.updateID();
-        
         }
-      
+
     getPic(picNum){
         let idPhoto = document.querySelector('.id-photo');
         if (picNum === 'ran'){
@@ -132,9 +131,7 @@ function startGame(e){
     }
 
 function startDay(){
-    //criteria text insert
     noteBoxOff();
-    document.querySelector('.criteria-text').innerHTML="Keep all the kids out today. No one under the age of 7.";
     dailyCount = 0;
     dailyCorrect = 0;
     if(daysWorked >= 0){
@@ -149,7 +146,27 @@ function startDay(){
     else {
         todaysCat = cats[Math.floor(Math.random()*cats.length)]();
     }
+    criteriaGen(daysWorked);
 }
+let todaysAge;
+function criteriaGen(daysWorked){
+    let textHolder;
+    Math.floor(Math.random());
+    if (daysWorked === 4){todaysAge = Math.floor(Math.random()*8+4);
+        textHolder = `Senior night! No one under the age of ${todaysAge}.`;}
+        else{
+            todaysAge = Math.floor(Math.random()*4+4);
+            textHolder = `Keep the kids out. No one under the age of ${todaysAge}.`;
+            let letArr = ['s','c','l']
+            let ranLet = letArr[Math.floor(Math.random()*3)]
+            this.ranLet = ranLet;
+            if(daysWorked>1){textHolder += ` Oh and no one with a name that starts with '${ranLet.toUpperCase()}'`}
+    }
+
+           
+    document.querySelector('.criteria-text').innerHTML=textHolder;
+}
+
 function buttonsToggle(){
     if (gameActive === true){
         allow.addEventListener('click', idCheck);
@@ -174,9 +191,29 @@ function idCheck(e){
         response.innerHTML = responseNeg[Math.floor(Math.random()*responseNeg.length)];              
     }
     //criteria math insert
+    function criteriaCheck(){
+        if (daysWorked === 4){
+            criteriaArr = [];
+            criteriaArr.push(whichBtn.includes('allow'));
+            criteriaArr.push(todaysCat.age>todaysAge);
+            criteriaArr.push(todaysCat.isLegit);
+        }
+        else{
+            criteriaArr = [];
+            criteriaArr.push(whichBtn.includes('allow'));
+            criteriaArr.push(todaysCat.age >= todaysAge);
+            criteriaArr.push(todaysCat.isLegit);
+            if (daysWorked>1){criteriaArr.push(todaysCat.name[0].toLowerCase() !== criteriaGen.ranLet)}
+            if (daysWorked>3){}; 
+            console.log(criteriaArr);
+        }    
+        if(criteriaArr[0] === true && !criteriaArr.includes(false, 1)){dailyCorrect += 1}
+            else if(criteriaArr[0] === false && criteriaArr.includes(false, 1)){dailyCorrect += 1}
+            console.log(dailyCorrect)    
+        }
     
-    if (todaysCat.age >= 7 && todaysCat.isLegit === true && whichBtn.includes('allow')){dailyCorrect += 1};
-    if (todaysCat.age < 7 || todaysCat.isLegit !==true && whichBtn.includes('deny')){dailyCorrect += 1};
+    criteriaCheck();
+
 
     dailyCount += 1;
     //deactivate buttons until timeout
