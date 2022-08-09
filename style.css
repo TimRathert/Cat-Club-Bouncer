@@ -2,10 +2,16 @@ body{
     font-family: 'mouse memoirs', Arial, Helvetica, sans-serif;
     font-size: 22px;
     height: 100vh;
+    width: 100vw;
     display: grid;
     grid-template-columns: min-content 20% 20% 20% 20%;
     grid-template-rows: min-content min-content min-content ;
+    justify-items: center;
 }
+.main-game-wrapper{
+    z-index: 3;
+    grid-column: 4;
+   }
 .catID-wrapper{
     border: 1px solid black;
     border-radius: 10px;
@@ -47,9 +53,9 @@ body{
     
 }
 
-.id-attributes-list > .vardata{
+/* .id-attributes-list > .vardata{
 
-}
+} */
 
 .button-wrapper{
     grid-row: 2;
@@ -63,12 +69,14 @@ body{
 }
 
 .criteria-wrapper{
+    background-color: #82d6b3 ;
     height: 150px;
     border: 1px solid black;
+    border-radius: 10px;
     grid-column: 1;
     grid-row:3;
     overflow: hidden;
-    font-size: 24px;
+    font-size: 23px;
     animation-duration: 2s;
     animation-name: overlapper;
 }
@@ -94,7 +102,7 @@ body{
     
     animation-duration: 2s;
     animation-name: typewriter;
-    margin: 0 auto;
+    margin: 5px;
 }
 
 @keyframes typewriter{
@@ -106,12 +114,47 @@ body{
         opacity: 1;
     }
 }
-.response {
-  /*   animation-play-state:paused;
-    animation:none;
-    animation-duration: 2s;
-    animation-name: fadeText; */
-    }
+.notify-box{
+    display: grid;
+    grid-template-columns: 90%;
+    grid-template-rows: 20% 20% 20% 20%;
+    border: 1px solid black;
+    border-radius: 1em;
+    position: absolute;
+    width: 16em;
+    height: 15em;
+    background-color: rgba(177, 185, 177, 0.98);
+    
+    
+    opacity: 0;
+    z-index: 1;
+}
+.notify-text{
+    margin: 3em;
+}
+.base-text{
+    grid-row: 1;
+}
+.reviewDiv{
+    grid-row: 2;
+}
+.next{
+    grid-row: 4;
+}
+.next{
+    height: 3em;
+    width: 5em;
+    font-family: mouse memoirs;
+    font-size: 22px;
+    margin: 1em auto;
+}
+
+  /* .response {
+        animation-play-state:paused;
+        animation:none;
+        animation-duration: 2s;
+        animation-name: fadeText; 
+    } */
 
 /* @keyframes fadeText{
     from{

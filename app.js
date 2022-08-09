@@ -1,5 +1,25 @@
 let gameActive = false;
 let dailyCount;
+let notifyIsOpen;
+let revDiv = document.querySelector('.reviewDiv');
+let scoreUpdate = document.querySelector('.notify-text');
+window.onload = startup => {
+    noteBoxOn();
+    scoreUpdate.style.margin = `1em`;
+    scoreUpdate.innerHTML = 'Ok, kid. Thanks for accepting the job as a bouncer for my club. I\'ll let you know who to let in each day. Check that list and make sure the IDs aren\'t fake (check the watermark).<br><br> Good luck<br>\- Boss';
+    revDiv.innerHTML = ``;
+    nextBtn.innerHTML=`I'll do my best`;
+    nextBtn.removeEventListener('click',startDay);
+    nextBtn.addEventListener('click', noteBoxOff);
+    nextBtn.addEventListener('click',reset)
+    function reset(){
+        nextBtn.removeEventListener('click',noteBoxOff);
+        nextBtn.removeEventListener('click', reset)
+        nextBtn.addEventListener('click', startDay)}
+        
+    
+
+ }
 class CatID {
     constructor(picNum, name, age, fur, eyeColor, isLegit, isCat = true){
         this.getPic(picNum);
@@ -84,7 +104,8 @@ let cats =
 ];
 
 //pausing this to make buttons
-function generateCriteria(day){
+function generateCriteria(){
+    let day = daysWorked;
     if (day !== undefined){
     }
     else{
@@ -102,50 +123,71 @@ let daysWorked;
 start.addEventListener('click', startGame)
 
 function startGame(e){
+    daysWorked = 0;
     startDay();
     gameActive = true;
     start.style.opacity = 0;
     start.removeEventListener('click', startGame);
-    buttonsOn();
-    daysWorked = 0;
-   }
+    buttonsToggle();
+    }
 
 function startDay(){
     //criteria text insert
+    noteBoxOff();
     document.querySelector('.criteria-text').innerHTML="Keep all the kids out today. No one under the age of 7.";
-    todaysCat = cats[Math.floor(Math.random()*cats.length)]();
     dailyCount = 0;
     dailyCorrect = 0;
+    if(daysWorked >= 0){
+        let daysWorkedText = document.querySelector('.counters');
+       
+        daysWorkedText.innerHTML = `Days Worked: ${daysWorked}.`
+        
+    }
+    if (gameActive === true){
+        todaysCat = cats[Math.floor(Math.random()*cats.length)]();
+    }
+    else {
+        todaysCat = cats[Math.floor(Math.random()*cats.length)]();
+    }
 }
-function buttonsOn(){
+function buttonsToggle(){
     if (gameActive === true){
         allow.addEventListener('click', idCheck);
         deny.addEventListener('click', idCheck);
     }
+    else if (gameActive === false){
+        allow.removeEventListener('click', idCheck);
+        deny.removeEventListener('click', idCheck);
+    }
 }
 function idCheck(e){
     response = document.querySelector('.response');
-    let classes =e.target.classList.toString();
+    let whichBtn =e.target.classList.toString();
     let currentCheck;
-    if(classes.includes('allow')){
-        currentCheck = classes.includes('allow')
+    if(whichBtn.includes('allow')){
+        currentCheck = whichBtn.includes('allow')
         responsePos= ["Come on in, pal!", "Right this way, friend","Hurry on inside, chum"];
         response.innerHTML = responsePos[Math.floor(Math.random()*responsePos.length)];     
     }
-    if(classes.includes('deny')){
+    if(whichBtn.includes('deny')){
         responseNeg= ["No way!", "Scram, ya chump!","Who do you think you're fooling?", "Not today, friend."];
         response.innerHTML = responseNeg[Math.floor(Math.random()*responseNeg.length)];              
     }
     //criteria math insert
     
-    if (todaysCat.age >= 7 && classes.includes('allow')){dailyCorrect += 1};
-    if (todaysCat.age < 7 && classes.includes('deny')){dailyCorrect += 1};
+    if (todaysCat.age >= 7 && todaysCat.isLegit === true && whichBtn.includes('allow')){dailyCorrect += 1};
+    if (todaysCat.age < 7 || todaysCat.isLegit !==true && whichBtn.includes('deny')){dailyCorrect += 1};
 
     dailyCount += 1;
-    
-    console.log(e);
+    //deactivate buttons until timeout
+    gameActive = false; 
+    buttonsToggle();
+    //
+    //console.log(e);
     setTimeout(function(){
-        response.innerHTML="";        
+        response.innerHTML="";
+        gameActive = true;
+        buttonsToggle();
         todaysCat = cats[Math.floor(Math.random()*cats.length)]()    
     }, 1500);
     
@@ -153,21 +195,64 @@ function idCheck(e){
 }
 
 let daysFailed = 0;
+
 function endOfDayCheck(){
-    //add prompt or window or something for this score
-    console.log(`You got ${dailyCorrect} out of 5`);
-    if ((dailyCorrect/5)<=.6){
-        daysFailed += 1;
+    daysWorked += 1;
+    noteBoxOn();
+    scoreUpdate.innerHTML = `You got ${dailyCorrect} out of 5`
+    let score = dailyCorrect/5
+    nextBtn.innerHTML=`Next Day`;
+        if (score<=0.6){
+            daysFailed += 1;
+        if (daysFailed < 2){
+            revDiv.innerHTML= `Disappointing Performance. Another day like that and you're fired!`; 
+        }
         //add gameOver function for what to do at the end
-        if (daysFailed >= 2){gameOver()}
-       // else {//FUNCTION TO START NEW DAY ON DELAY}
-        
+        else if (daysFailed >= 2){gameOver()}
+       // else {//FUNCTION TO START NEW GAME ON DELAY}     
     }
-    else if((dailyCorrect/5)>.6){
-        daysWorked += 1;
-      //  FUNCTION TO START NEW DAY ON DELAY
+    else if(score>.6){ 
+        let goodJobText = [
+            `I knew I could count on you! Great work!`,
+            `Thank you for keeping this place running smooth!`,
+            `Fantastic work today`,
+            `I couldn't do it without you. Great job!`,
+            `You're just the best :)`,
+            `I don't know how I did this without an employee like you!`,
+            ];
+        revDiv.innerHTML = goodJobText[Math.floor(Math.random()*goodJobText.length)]
+        }
+    function gameOver(){
+        let gameOverText = [
+            `Are you even paying attention? You're fired!`,
+            `I'm not mad, just disappointed. You're fired.`,
+            `Can you read? YOU'RE FIRED!`,
+            `Your work is repugnant. You're fired.`,
+            ];
+        revDiv.innerHTML= gameOverText[Math.floor(Math.random()*gameOverText.length)];
+        nextBtn.innerHTML = 'Go Find A New Job';
+        nextBtn.removeEventListener('click',startDay)
+        nextBtn.addEventListener('click', startGame)
+
     }
 }
+
+let nextBtn = document.querySelector('.next') 
+nextBtn.addEventListener('click',startDay)
+
+function noteBoxOff(){
+    let noteBox = document.querySelector('.notify-box');
+        noteBox.style.zIndex = 1;
+        noteBox.style.opacity = 0;
+        notifyIsOpen = false;
+    }
+function noteBoxOn(){
+    let noteBox = document.querySelector('.notify-box');
+        noteBox.style.zIndex = 4;
+        noteBox.style.opacity = 1;
+        notifyIsOpen = true;
+}
+    
 
 
  //generates a random cat from the cats array

@@ -67,15 +67,15 @@ game states
     
     
     goals
-        1) Make Cat Cards (start static)
-        2) Make criteria (start static)
-        3) test cards vs criteria [active state] - start with age & fake ID as criteria.
-        4) css layout (see figma for notes)
-        5) [intro state] / title screen (functionality)
-        6) [start round state] - pull cats and criteria (start static) {maybe text: 'welcome to work'}
-        7) 'round tracker for [end-of-round state](functionality)
-        8) [end-of-round state] screen (CSS)
-        9) [game over state] / screen
+        DONE 1) Make Cat Cards (start static)
+        DONE 2) Make criteria (start static)
+        DONE 3) test cards vs criteria [active state] - start with age & fake ID as criteria.
+        DONE 4) css layout (see figma for notes)
+        DONE 5) [intro state] / title screen (functionality)
+        DONE 6) [start round state] - pull cats and criteria (start static) {maybe text: 'welcome to work'}
+        DONE 7) 'round tracker for [end-of-round state](functionality)
+        DONE 8) [end-of-round state] screen (CSS)
+        DONE 9) [game over state] / screen
         10) expand criteria (static iteration or rng) - tie to [round start state]
         11) variance in cat cards - tie to [round start state]
         12) turn timer
