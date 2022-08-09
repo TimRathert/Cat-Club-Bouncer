@@ -51,8 +51,11 @@ class CatID {
         idPhoto.src = picArr[picNum];
     }
     catNamer(name){
+        let nameList = ['Elmer', 'Cornelius','Sprout','Bok Choy', 'Luna', 'Milo', 'Oliver', 'Leo', 'Loki', 'Bella', 'Charlie', 'Willow', 'Lucy', 'Simba', 'Beans'];
+        this.nameList = nameList;
+
         if (name.toLowerCase() === 'random'){
-            let nameList = ['Elmer', 'Cornelius','Sprout','Bok Choy', 'Luna', 'Milo', 'Oliver', 'Leo', 'Loki', 'Bella', 'Charlie', 'Willow', 'Lucy', 'Simba', 'Beans'];
+            
             let  ran = Math.floor(Math.random()*nameList.length)
                 this.name = nameList[ran]}
         else {this.name = name}
@@ -70,7 +73,7 @@ class CatID {
           
     }
     realOrFake(isLegit){
-        if (isLegit !== true){
+        if (!isLegit){
             if (Math.floor(Math.random()*100)<50){
                 document.getElementById('watermark').style.opacity = 0;
                 this.isLegit = false;
@@ -102,23 +105,12 @@ let cats =
         return cat = new CatID(6, 'random', (Math.floor(Math.random()*14)+1), 'White', 'Green', true)},
 ];
 
-//pausing this to make buttons
-function generateCriteria(){
-    let day = daysWorked;
-    if (day !== undefined){
-    }
-    else{
-        //generate some criteria
-   }
-}
-
-
-
 let allow = document.querySelector('.allow');
 let deny = document.querySelector('.deny');
 let start = document.querySelector('.start');
 let dailyCorrect;
 let daysWorked;
+let kidName;
 start.addEventListener('click', startGame)
 
 function startGame(e){
@@ -148,21 +140,34 @@ function startDay(){
     }
     criteriaGen(daysWorked);
 }
+
 let todaysAge;
+let fakeCount;
+let ranLet;
+
 function criteriaGen(daysWorked){
     let textHolder;
+    
     Math.floor(Math.random());
-    if (daysWorked === 4){todaysAge = Math.floor(Math.random()*8+4);
+    if ((daysWorked+2)%5 === 0){todaysAge = Math.floor(Math.random()*4+10);
         textHolder = `Senior night! No one under the age of ${todaysAge}.`;}
-        else{
+    else if ((daysWorked+2)%9 === 0){
+        todaysAge = Math.floor(Math.random()*4+2);
+        shortNameList = ['Elmer', 'Cornelius','Sprout']
+        kidName =shortNameList[Math.floor(Math.random()*shortNameList.length)]
+        textHolder = `Same old thing today. No one under ${todaysAge} unless it's my brother's kid ${kidName}. I'm watching ${kidName} after school. Might be more than one?`;
+    }
+    else{
             todaysAge = Math.floor(Math.random()*4+4);
             textHolder = `Keep the kids out. No one under the age of ${todaysAge}.`;
             let letArr = ['s','c','l']
-            let ranLet = letArr[Math.floor(Math.random()*3)]
-            this.ranLet = ranLet;
-            if(daysWorked>1){textHolder += ` Oh and no one with a name that starts with '${ranLet.toUpperCase()}'`}
-    }
+            ranLet = letArr[Math.floor(Math.random()*3)];
+            if(daysWorked>1)
+                {textHolder += ` Oh and no one with a name that starts with '${ranLet.toUpperCase()}'.`}
 
+    }
+    if(!todaysCat.isLegit){fakeCount += 1}
+    
            
     document.querySelector('.criteria-text').innerHTML=textHolder;
 }
@@ -192,20 +197,41 @@ function idCheck(e){
     }
     //criteria math insert
     function criteriaCheck(){
-        if (daysWorked === 4){
+        if ((daysWorked+2)%5 === 0){
             criteriaArr = [];
             criteriaArr.push(whichBtn.includes('allow'));
             criteriaArr.push(todaysCat.age>todaysAge);
             criteriaArr.push(todaysCat.isLegit);
+        }
+        else if ((daysWorked+2)%9 === 0){
+            criteriaArr = [];
+            if (todaysCat.name === kidName){
+                criteriaArr.push(whichBtn.includes('allow'));
+                criteriaArr.push(todaysCat.name === kidName);    
+            }
+            else{
+                criteriaArr.push(whichBtn.includes('allow'));
+                criteriaArr.push(todaysCat.age>todaysAge);
+                criteriaArr.push(todaysCat.isLegit)
+            }
+        console.log(criteriaArr);
         }
         else{
             criteriaArr = [];
             criteriaArr.push(whichBtn.includes('allow'));
             criteriaArr.push(todaysCat.age >= todaysAge);
             criteriaArr.push(todaysCat.isLegit);
-            if (daysWorked>1){criteriaArr.push(todaysCat.name[0].toLowerCase() !== criteriaGen.ranLet)}
-            if (daysWorked>3){}; 
+            if (daysWorked>1){
+                criteriaArr.push(todaysCat.name[0].toLowerCase() !== ranLet);
+                console.log(ranLet);
+                //have criteriaGen return obj with ranLet value
+                console.log(todaysCat.name[0].toLowerCase());
+            }
+            if (daysWorked>5){
+                //function to make timer visible and active
+            }; 
             console.log(criteriaArr);
+      
         }    
         if(criteriaArr[0] === true && !criteriaArr.includes(false, 1)){dailyCorrect += 1}
             else if(criteriaArr[0] === false && criteriaArr.includes(false, 1)){dailyCorrect += 1}
