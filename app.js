@@ -3,6 +3,7 @@ let dailyCount;
 let notifyIsOpen;
 let revDiv = document.querySelector('.reviewDiv');
 let scoreUpdate = document.querySelector('.notify-text');
+let timer;
 window.onload = startup => {
     noteBoxOn();
     scoreUpdate.style.margin = `1em`;
@@ -127,9 +128,9 @@ function startDay(){
     dailyCount = 0;
     dailyCorrect = 0;
     if(daysWorked >= 0){
-        let daysWorkedText = document.querySelector('.counters');
+        let daysWorkedText = document.querySelector('.days-worked');
        
-        daysWorkedText.innerHTML = `Days Worked: ${daysWorked}.`
+        daysWorkedText.innerHTML = `Days Worked: ${daysWorked}`
         
     }
     if (gameActive === true){
@@ -139,11 +140,31 @@ function startDay(){
         todaysCat = cats[Math.floor(Math.random()*cats.length)]();
     }
     criteriaGen(daysWorked);
+    timer = setTimer();
+    //clearInterval(gameTimer);
+    setInterval(gameTimer);
+    
 }
 
 let todaysAge;
 let fakeCount;
 let ranLet;
+function setTimer(){
+    if (daysWorked<3){return 4}
+    else if (daysWorked<6){return 30}
+    else if (daysWorked<9){return 20}
+    else if (daysWorked<12){return 15}
+    else{return 10};
+}
+let gameTimer = setInterval(function(){
+    if(timer <= 0){
+            setTimeout(endOfDayCheck(),1000);
+        }
+        timer--;
+        document.querySelector('.timer').innerHTML = `Time until shift ends: ${timer}`;
+    },1000); 
+    
+
 
 function criteriaGen(daysWorked){
     let textHolder;
@@ -155,7 +176,7 @@ function criteriaGen(daysWorked){
         todaysAge = Math.floor(Math.random()*4+2);
         shortNameList = ['Elmer', 'Cornelius','Sprout']
         kidName =shortNameList[Math.floor(Math.random()*shortNameList.length)]
-        textHolder = `Same old thing today. No one under ${todaysAge} unless it's my brother's kid ${kidName}. I'm watching ${kidName} after school. Might be more than one?`;
+        textHolder = `Same old thing today. No one under ${todaysAge} unless it's my brother's kid, ${kidName}. I'm watching ${kidName} after school. Might be more than one?`;
     }
     else{
             todaysAge = Math.floor(Math.random()*4+4);
@@ -227,9 +248,6 @@ function idCheck(e){
                 //have criteriaGen return obj with ranLet value
                 console.log(todaysCat.name[0].toLowerCase());
             }
-            if (daysWorked>5){
-                //function to make timer visible and active
-            }; 
             console.log(criteriaArr);
       
         }    
@@ -261,11 +279,16 @@ let daysFailed = 0;
 
 function endOfDayCheck(){
     daysWorked += 1;
+    clearInterval(gameTimer);
     noteBoxOn();
     scoreUpdate.innerHTML = `You got ${dailyCorrect} out of 5`
-    let score = dailyCorrect/5
+    let score;
+    if(dailyCount === 0 ){score = 'You Missed Work'}
+    else{
+        score = dailyCorrect/5
+        }
     nextBtn.innerHTML=`Next Day`;
-        if (score<=0.6){
+        if (score<=0.6 || score === 'You Missed Work'){
             daysFailed += 1;
         if (daysFailed < 2){
             revDiv.innerHTML= `Disappointing Performance. Another day like that and you're fired!`; 

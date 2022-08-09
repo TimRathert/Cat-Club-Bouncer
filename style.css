@@ -7,6 +7,7 @@ body{
     grid-template-columns: min-content 20% 20% 20% 20%;
     grid-template-rows: min-content min-content min-content ;
     justify-items: center;
+    background-image: url('/id-pics/alley1.png')
 }
 .main-game-wrapper{
     z-index: 3;
@@ -23,7 +24,9 @@ body{
     background:linear-gradient(#999999, #CCCCCC);
     overflow: hidden;
     position: relative;
-    
+}
+.catID-wrapper:hover{
+   
 }
 #watermark{
     
@@ -140,6 +143,12 @@ body{
 }
 .next{
     grid-row: 4;
+}
+.counters{
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 .next{
     height: 3em;
