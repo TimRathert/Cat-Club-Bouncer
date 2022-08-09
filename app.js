@@ -3,7 +3,8 @@ let dailyCount;
 let notifyIsOpen;
 let revDiv = document.querySelector('.reviewDiv');
 let scoreUpdate = document.querySelector('.notify-text');
-let timer;
+let gameTimer;
+let time;
 window.onload = startup => {
     noteBoxOn();
     scoreUpdate.style.margin = `1em`;
@@ -140,9 +141,16 @@ function startDay(){
         todaysCat = cats[Math.floor(Math.random()*cats.length)]();
     }
     criteriaGen(daysWorked);
-    timer = setTimer();
-    //clearInterval(gameTimer);
-    setInterval(gameTimer);
+    time = setTimer();
+    clearInterval(gameTimer);
+    gameTimer = setInterval(function(){
+        if(time <= 0){
+                setTimeout(endOfDayCheck(),1000);
+            }
+        else{
+            time--;
+            document.querySelector('.timer').innerHTML = `Time until shift ends: ${time}`;
+        }},1000); 
     
 }
 
@@ -150,21 +158,12 @@ let todaysAge;
 let fakeCount;
 let ranLet;
 function setTimer(){
-    if (daysWorked<3){return 4}
+    if (daysWorked<3){return 40}
     else if (daysWorked<6){return 30}
     else if (daysWorked<9){return 20}
     else if (daysWorked<12){return 15}
     else{return 10};
-}
-let gameTimer = setInterval(function(){
-    if(timer <= 0){
-            setTimeout(endOfDayCheck(),1000);
-        }
-        timer--;
-        document.querySelector('.timer').innerHTML = `Time until shift ends: ${timer}`;
-    },1000); 
-    
-
+} 
 
 function criteriaGen(daysWorked){
     let textHolder;
