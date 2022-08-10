@@ -21,8 +21,9 @@ function startUp(){
     function reset(){
         nextBtn.removeEventListener('click',noteBoxOff);
         nextBtn.removeEventListener('click', reset)
-        nextBtn.addEventListener('click', startDay)}  
-
+        nextBtn.addEventListener('click', startDay)
+    };
+    let id = document.querySelector('.id-photo').src = `/id-pics/titleID.gif`;
 }
     
 
@@ -275,9 +276,10 @@ function idCheck(e){
         response.innerHTML="";
         if(daysFailed<2){
             gameActive = true;
+            todaysCat = cats[Math.floor(Math.random()*cats.length)]()
         }
         buttonsToggle();
-        todaysCat = cats[Math.floor(Math.random()*cats.length)]()    
+            
     }, 1500);
     
     if (dailyCount === 5){setTimeout(endOfDayCheck(),1000)}
@@ -286,6 +288,15 @@ function idCheck(e){
 let daysFailed = 0;
 
 function endOfDayCheck(){
+        //deactivate buttons until timeout
+        gameActive = false; 
+        buttonsToggle();
+        //
+        //console.log(e);
+        setTimeout(function(){
+            response.innerHTML="";
+            buttonsToggle();   
+        }, 1500);
     daysWorked += 1;
     time = 0;
     clearInterval(gameTimer);
