@@ -29,9 +29,8 @@ body{
    
 }
 #watermark{
-    
-    position: absolute;
-    }
+     position: absolute;
+}
 
 .id-photo{
     grid-column: 1;
