@@ -111,7 +111,7 @@ let cats =
         function cat5(){
         return cat = new CatID(5, 'random', (Math.floor(Math.random()*14)+1), 'Brown', 'Green')},
         function cat6(){
-        return cat = new CatID(6, 'random', (Math.floor(Math.random()*14)+1), 'White', 'Green', true)},
+        return cat = new CatID(6, 'random', (Math.floor(Math.random()*14)+1), 'White', 'Blue', true)},
 ];
 
 let allow = document.querySelector('.allow');
@@ -340,3 +340,63 @@ function noteBoxOn(){
         noteBox.style.opacity = 1;
         notifyIsOpen = true;
 }
+
+
+let arr = [];
+window.addEventListener('keydown', e => {
+    if(arr.length === 0 && e.keyCode === 38){
+        arr.push(1);
+        return;
+    }
+    if(arr.length === 1 && e.keyCode === 38){
+        arr.push(1);
+        return;
+    }
+    if(arr.length === 2 && e.keyCode === 40){
+        arr.push(1);
+        return;
+    }
+    if(arr.length === 3 && e.keyCode === 40){
+        arr.push(1);
+        return;
+    }
+    if(arr.length === 4 && e.keyCode === 37){
+        arr.push(1);
+        return;
+    }
+    if(arr.length === 5 && e.keyCode === 39){
+        arr.push(1);
+        return;
+    }
+    if(arr.length === 6 && e.keyCode === 37){
+        arr.push(1);
+        return;
+    }
+    if(arr.length === 7 && e.keyCode === 39){
+        arr.push(1);
+        return;
+    }
+    if(arr.length === 8 && e.keyCode === 66){
+        arr.push(1);
+        return;
+    }
+    if(arr.length === 9 && e.keyCode === 65){
+        arr.push(1);
+        return;
+    }
+    if(arr.length === 10 && e.keyCode === 66){
+        arr.push(1);
+        return;
+    }
+    if(arr.length === 11 && e.keyCode === 65){
+        arr.push(1);
+        return;
+    }
+    if(arr.length === 12 && e.keyCode === 13){
+        arr.push(1);
+        document.body.style.backgroundImage = 'url(/id-pics/cat-explosion.gif)'
+        return;
+    }    
+    else{arr = [];}
+})
+
