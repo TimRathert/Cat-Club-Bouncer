@@ -394,7 +394,8 @@ window.addEventListener('keydown', e => {
     }
     if(arr.length === 12 && e.keyCode === 13){
         arr.push(1);
-        document.body.style.backgroundImage = 'url(/id-pics/cat-explosion.gif)'
+        document.body.style.backgroundImage = 'url(/id-pics/coolcat.jpg)';
+        document.body.style.backgroundSize = '50%';
         return;
     }    
     else{arr = [];}
