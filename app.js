@@ -133,6 +133,7 @@ function startGame(e){
 
 function startDay(){
     gameActive = true;
+    buttonsToggle();
     noteBoxOff();
     dailyCount = 0;
     dailyCorrect = 0;
@@ -170,7 +171,8 @@ function setTimer(){
     else if (daysWorked<6){return 30}
     else if (daysWorked<9){return 20}
     else if (daysWorked<12){return 15}
-    else{return 10};
+    else if (daysWorked<15){return 10}
+    else{return 5};
 } 
 
 function criteriaGen(daysWorked){
@@ -181,14 +183,14 @@ function criteriaGen(daysWorked){
         textHolder = `Senior night! No one under the age of ${todaysAge}.`;}
     else if ((daysWorked+2)%9 === 0){
         todaysAge = Math.floor(Math.random()*4+2);
-        shortNameList = ['Elmer', 'Cornelius','Sprout']
-        kidName =shortNameList[Math.floor(Math.random()*shortNameList.length)]
+        shortNameList = ['Elmer', 'Cornelius','Sprout'];
+        kidName =shortNameList[Math.floor(Math.random()*shortNameList.length)];
         textHolder = `Same old thing today. No one under ${todaysAge} unless it's my brother's kid, ${kidName}. I'm watching ${kidName} after school. Might be more than one?`;
     }
     else{
             todaysAge = Math.floor(Math.random()*4+4);
             textHolder = `Keep the kids out. No one under the age of ${todaysAge}.`;
-            let letArr = ['s','c','l']
+            let letArr = ['s','c','l'];
             ranLet = letArr[Math.floor(Math.random()*3)];
             if(daysWorked>1)
                 {textHolder += ` Oh and no one with a name that starts with '${ranLet.toUpperCase()}'.`}
@@ -222,8 +224,7 @@ function idCheck(e){
     if(whichBtn.includes('deny')){
         responseNeg= ["No way!", "Scram, ya chump!","Who do you think you're fooling?", "Not today, friend."];
         response.innerHTML = responseNeg[Math.floor(Math.random()*responseNeg.length)];              
-    }
-    //criteria math insert
+    }  
     function criteriaCheck(){
         if ((daysWorked+2)%5 === 0){
             criteriaArr = [];
@@ -241,8 +242,7 @@ function idCheck(e){
                 criteriaArr.push(whichBtn.includes('allow'));
                 criteriaArr.push(todaysCat.age>todaysAge);
                 criteriaArr.push(todaysCat.isLegit)
-            }
-        console.log(criteriaArr);
+            }   
         }
         else{
             criteriaArr = [];
@@ -251,35 +251,22 @@ function idCheck(e){
             criteriaArr.push(todaysCat.isLegit);
             if (daysWorked>1){
                 criteriaArr.push(todaysCat.name[0].toLowerCase() !== ranLet);
-                console.log(ranLet);
-                //have criteriaGen return obj with ranLet value
-                console.log(todaysCat.name[0].toLowerCase());
-            }
-            console.log(criteriaArr);
-      
+            }       
         }    
         if(criteriaArr[0] === true && !criteriaArr.includes(false, 1)){dailyCorrect += 1}
-            else if(criteriaArr[0] === false && criteriaArr.includes(false, 1)){dailyCorrect += 1}
-            console.log(dailyCorrect)    
+            else if(criteriaArr[0] === false && criteriaArr.includes(false, 1)){dailyCorrect += 1}  
         }
-    
     criteriaCheck();
-
-
     dailyCount += 1;
-    //deactivate buttons until timeout
     gameActive = false; 
     buttonsToggle();
-    //
-    //console.log(e);
     setTimeout(function(){
         response.innerHTML="";
         if(daysFailed<2){
             gameActive = true;
-            todaysCat = cats[Math.floor(Math.random()*cats.length)]()
-        }
-        buttonsToggle();
-            
+            todaysCat = cats[Math.floor(Math.random()*cats.length)]();
+            buttonsToggle();
+        }    
     }, 1500);
     
     if (dailyCount === 5){setTimeout(endOfDayCheck(),1000)}
@@ -288,35 +275,27 @@ function idCheck(e){
 let daysFailed = 0;
 
 function endOfDayCheck(){
-        //deactivate buttons until timeout
-        gameActive = false; 
-        buttonsToggle();
-        //
-        //console.log(e);
-        setTimeout(function(){
-            response.innerHTML="";
-            buttonsToggle();   
-        }, 1500);
+    gameActive = false; 
+    buttonsToggle();
+    setTimeout(function(){
+        response.innerHTML="";
+        buttonsToggle();   
+    }, 1500);
     daysWorked += 1;
     time = 0;
     clearInterval(gameTimer);
     noteBoxOn();
     scoreUpdate.innerHTML = `You got ${dailyCorrect} out of 5`
     let score;
-    if(dailyCount === 0 ){score = 'You Missed Work'}
-    else{
-        score = dailyCorrect/5
-        }
+    score = dailyCorrect/5
     nextBtn.innerHTML=`Next Day`;
-        if (score<=0.6 || score === 'You Missed Work'){
+        if (score<=0.6){
             daysFailed += 1;
         if (daysFailed < 2){
             revDiv.innerHTML= `Disappointing Performance. Another day like that and you're fired!`; 
         }
-        //add gameOver function for what to do at the end
         else if (daysFailed >= 2){gameOver()}
-       // else {//FUNCTION TO START NEW GAME ON DELAY}     
-    }
+        }
     else if(score>.6){ 
         let goodJobText = [
             `I knew I could count on you! Great work!`,
@@ -343,18 +322,7 @@ function endOfDayCheck(){
         start.style.opacity = 1;
         start.addEventListener('click', startGame);
         buttonsToggle();
-        response.innerHTML = '';
-       /*  
-        this isn't doing anything, apparently.
-        function reset (){
-            let text = document.querySelector('.criteria-text');
-            text.innerHTML = ''
-            let id = document.querySelector('.id-photo')
-            id.src = '';
-            let name = document.querySelector('.id-name')
-            name.innerHTML = ''
-        }
-        reset(); */
+        response.innerHTML = '';    
     }
 }
 
@@ -373,18 +341,3 @@ function noteBoxOn(){
         noteBox.style.opacity = 1;
         notifyIsOpen = true;
 }
-    
-
-
- //generates a random cat from the cats array
-
-/* let todaysCriteria = PLACEHOLDER */ 
-//cats[1]()
-//function to check answers
-
-
-/*at start of day
-    make a cat ID (done todaysCat)
-    make some rules
-    move day counter forward (save this)
-*/
