@@ -5,6 +5,7 @@ let revDiv = document.querySelector('.reviewDiv');
 let scoreUpdate = document.querySelector('.notify-text');
 let gameTimer;
 let time;
+
 function startUp(){
     daysFailed = 0;
     noteBoxOn();
@@ -26,7 +27,6 @@ function startUp(){
     let id = document.querySelector('.id-photo').src = `/id-pics/titleID.gif`;
 }
     
-
 window.onload = startUp;
     
 class CatID {
@@ -139,7 +139,6 @@ function startDay(){
     dailyCorrect = 0;
     if(daysWorked >= 0){
         let daysWorkedText = document.querySelector('.days-worked');
-       
         daysWorkedText.innerHTML = `Days Worked: ${daysWorked}`
         
     }
@@ -185,7 +184,7 @@ function criteriaGen(daysWorked){
         todaysAge = Math.floor(Math.random()*4+2);
         shortNameList = ['Elmer', 'Cornelius','Sprout'];
         kidName =shortNameList[Math.floor(Math.random()*shortNameList.length)];
-        textHolder = `Same old thing today. No one under ${todaysAge} unless it's my brother's kid, ${kidName}. I'm watching ${kidName} after school. Might be more than one?`;
+        textHolder = `Same old thing today. No one under ${todaysAge} unless it's my sibling's kid, ${kidName}. I'm watching ${kidName} after school. Might be more than one?`;
     }
     else{
             todaysAge = Math.floor(Math.random()*4+4);

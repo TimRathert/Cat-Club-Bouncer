@@ -5,13 +5,16 @@ body{
     width: 100vw;
     display: grid;
     grid-template-columns: min-content 20% 20% 20% 20%;
-    grid-template-rows: min-content min-content min-content ;
+    grid-template-rows: 10em min-content min-content ;
     justify-items: center;
     background-image: url('/id-pics/alley1.png')
 }
 .main-game-wrapper{
     z-index: 3;
     grid-column: 4;
+    grid-row-start: 1;
+    display: grid;
+    grid-template-rows: 10em min-content min-content;
    }
 .catID-wrapper{
     border: 1px solid black;
@@ -24,9 +27,16 @@ body{
     background:linear-gradient(#999999, #CCCCCC);
     overflow: hidden;
     position: relative;
+    transition: transform .5s;
+    overflow: hidden;
+
+    
 }
 .catID-wrapper:hover{
-   
+    align-content: center;
+    transform:translateY(20%) scale(1.2);
+
+    
 }
 #watermark{
     position: absolute;
@@ -126,10 +136,9 @@ body{
     width: 16em;
     height: 15em;
     background-color: rgba(177, 185, 177, 0.98);
-    
-    
     opacity: 0;
     z-index: 1;
+    transition: opacity 1s;
 }
 .notify-text{
     margin: 3em;
