@@ -4,6 +4,6 @@
 
 
 
-! [](/resources/Screenshot01.jpg)
-! [](/resources/Screenshot02.jpg)
-! [](/resources/Screenshot03.jpg)
+! [Screenshot01](./resources/Screenshot01.jpg)
+! [Screenshot02](./resources/Screenshot02.jpg)
+! [Screenshot03](./resources/Screenshot03.jpg)
