@@ -76,10 +76,10 @@ game states
         DONE 7) 'round tracker for [end-of-round state](functionality)
         DONE 8) [end-of-round state] screen (CSS)
         DONE 9) [game over state] / screen
-        10) expand criteria (static iteration or rng) - tie to [round start state]
+        DONE 10) expand criteria (static iteration or rng) - tie to [round start state]
         11) variance in cat cards - tie to [round start state]
-        12) turn timer
-        13) dynamic criteria generation (incremented to increase difficulty)
+        DONE 12) turn timer
+        DONE 13) dynamic criteria generation (incremented to increase difficulty)
         14) dynamic cat generation
 
         *** Code Audit *** Thursday

@@ -24,7 +24,7 @@ function startUp(){
         nextBtn.removeEventListener('click', reset)
         nextBtn.addEventListener('click', startDay)
     };
-    let id = document.querySelector('.id-photo').src = `/id-pics/titleID.gif`;
+    let id = document.querySelector('.id-photo').src = `./resources/titleID.gif`;
 }
     
 window.onload = startUp;
@@ -49,13 +49,13 @@ class CatID {
         picNum = Math.floor(Math.random()*6)
         }
         let picArr = [
-           `/id-pics/id0.jpg`,  
-           `/id-pics/id1.jpg`,  
-           `/id-pics/id2.jpg`,  
-           `/id-pics/id3.jpg`,  
-           `/id-pics/id4.jpg`,  
-           `/id-pics/id5.jpg`,  
-           `/id-pics/id6.jpg`,  
+           `./resources/id0.jpg`,  
+           `./resources/id1.jpg`,  
+           `./resources/id2.jpg`,  
+           `./resources/id3.jpg`,  
+           `./resources/id4.jpg`,  
+           `./resources/id5.jpg`,  
+           `./resources/id6.jpg`,  
             ] 
         idPhoto.src = picArr[picNum];
     }
@@ -394,7 +394,8 @@ window.addEventListener('keydown', e => {
     }
     if(arr.length === 12 && e.keyCode === 13){
         arr.push(1);
-        document.body.style.backgroundImage = 'url(/id-pics/alley2.png)';
+        document.body.style.backgroundImage = 'url(./resources/cat-explosion.gif)';
+        document.body.style.backgroundSize = '25%';
         return;
     }    
     else{arr = [];}
