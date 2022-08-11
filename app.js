@@ -167,10 +167,11 @@ let fakeCount;
 let ranLet;
 function setTimer(){
     if (daysWorked<3){return 40}
-    else if (daysWorked<6){return 30}
-    else if (daysWorked<9){return 20}
-    else if (daysWorked<12){return 15}
-    else if (daysWorked<15){return 10}
+    else if (daysWorked<5){return 30}
+    else if (daysWorked<7){return 20}
+    else if (daysWorked<9){return 15}
+    else if (daysWorked<11){return 10}
+    else if (daysWorked<13){return 8}
     else{return 5};
 } 
 
