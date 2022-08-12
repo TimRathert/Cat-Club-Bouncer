@@ -342,6 +342,8 @@ function noteBoxOn(){
         notifyIsOpen = true;
 }
 
+let id = document.querySelector('.catID-wrapper')
+
 
 let arr = [];
 window.addEventListener('keydown', e => {

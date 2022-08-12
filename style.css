@@ -7,8 +7,11 @@ body{
     grid-template-columns: min-content 20% 20% 20% 20%;
     grid-template-rows: 10em min-content min-content ;
     justify-items: center;
-    background-image: url('./resources/alley1.png')
+    background-image: url('./resources/alley1.png');
+    background-size: 100%;
 }
+
+
 .main-game-wrapper{
     z-index: 3;
     grid-column: 4;
@@ -35,9 +38,8 @@ body{
 .catID-wrapper:hover{
     align-content: center;
     transform:translateY(20%) scale(1.2);
-
-    
 }
+
 #watermark{
     position: absolute;
 }
@@ -119,9 +121,10 @@ transform: scale(1.1);
     margin-top: 0;
 }
 .criteria-text{
-    
+/*     
     animation-duration: 2s;
-    animation-name: typewriter;
+    animation-name: typewriter; 
+*/
     margin: 5px;
 }
 
