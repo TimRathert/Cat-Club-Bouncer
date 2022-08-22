@@ -7,7 +7,7 @@
 <img src='./resources/Screenshot01.jpg' alt ='Game start message' width='250px'><nobr>
 <img src='./resources/Screenshot02.jpg' alt ='Can this one come in?' width='250px'>
 <img src='./resources/Screenshot03.jpg' alt ='Getting fired is never easy' width='250px'><nobr>
-<img src='./resources/Screenshot04.jpg' alt ='Hmm. This one doesn't have a watermark.' width='250px'>
+<img src='./resources/Screenshot04.jpg' alt ='Hmm. This one does not have a watermark.' width='250px'>
 
 
 #### Technologies Used:
