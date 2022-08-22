@@ -1,3 +1,4 @@
+//Declaration of initial variables
 let gameActive;
 let dailyCount;
 let notifyIsOpen;
@@ -26,7 +27,8 @@ function startUp(){
     };
     let id = document.querySelector('.id-photo').src = `./resources/titleID.gif`;
 }
-    
+
+//
 window.onload = startUp;
     
 class CatID {
@@ -123,6 +125,7 @@ let kidName;
 start.addEventListener('click', startGame)
 
 function startGame(e){
+    //startGame is different from startDay in that it is only invoked once to hard reset some values and toggle button functionality.
     daysWorked = 0;
     startDay();
     start.style.opacity = 0;
@@ -132,23 +135,25 @@ function startGame(e){
     }
 
 function startDay(){
+    //start of day re-initializes values for new 'day' loop 
     gameActive = true;
     buttonsToggle();
     noteBoxOff();
     dailyCount = 0;
     dailyCorrect = 0;
+    //Days Worked is initialized to zero and only begins updating when a value >0 is present
     if(daysWorked >= 0){
         let daysWorkedText = document.querySelector('.days-worked');
         daysWorkedText.innerHTML = `Days Worked: ${daysWorked}`
         
     }
+    //New cat generated from constructor class at start of day IF gameActive is true. Commented out 'else' for testing 
     if (gameActive === true){
         todaysCat = cats[Math.floor(Math.random()*cats.length)]();
     }
-    else {
-        todaysCat = cats[Math.floor(Math.random()*cats.length)]();
-    }
+    //criteriaGen is fed the daysWorked to generate criteria for club entry semi-dynamically
     criteriaGen(daysWorked);
+    //setTimer is invoked here with reference to days worked inorder to generate a (decrementing) value for the timer
     time = setTimer();
     clearInterval(gameTimer);
     gameTimer = setInterval(function(){
@@ -216,6 +221,7 @@ function idCheck(e){
     response = document.querySelector('.response');
     let whichBtn =e.target.classList.toString();
     let currentCheck;
+    // when you push a button, one of a few text strings is returned as 'dialog'
     if(whichBtn.includes('allow')){
         currentCheck = whichBtn.includes('allow')
         responsePos= ["Come on in, pal!", "Right this way, friend","Hurry on inside, chum"];
@@ -226,6 +232,12 @@ function idCheck(e){
         response.innerHTML = responseNeg[Math.floor(Math.random()*responseNeg.length)];              
     }  
     function criteriaCheck(){
+            // the criteria are stored as a reference to the modulo of the number of days worked.
+            // on each allow/deny button press, a true or false value is pushed into the criteriaArr
+            // the value at index zero is TRUE if you allow the cat and FALSE if you deny them (more on this later)
+            // otherwise, TRUE is pushed if the cat meets the criteria, FALSE is pushed if not.
+            
+            
         if ((daysWorked+2)%5 === 0){
             criteriaArr = [];
             criteriaArr.push(whichBtn.includes('allow'));
@@ -252,9 +264,14 @@ function idCheck(e){
             if (daysWorked>1){
                 criteriaArr.push(todaysCat.name[0].toLowerCase() !== ranLet);
             }       
-        }    
+        }   
+        
+        // Because criteriaArr[0] is TRUE if you allow the cat and FALSE if you do not, checking if the cat should have been allowed in is simple.
+        // A cat that is permitted into the club should have a criteriaArr where every value is true
         if(criteriaArr[0] === true && !criteriaArr.includes(false, 1)){dailyCorrect += 1}
-            else if(criteriaArr[0] === false && criteriaArr.includes(false, 1)){dailyCorrect += 1}  
+        
+        // If a cat should have been denied entry, the index 0 should be false and at least one other value should be false
+        else if(criteriaArr[0] === false && criteriaArr.includes(false, 1)){dailyCorrect += 1}  
         }
     criteriaCheck();
     dailyCount += 1;
@@ -275,6 +292,7 @@ function idCheck(e){
 let daysFailed = 0;
 
 function endOfDayCheck(){
+    // At the end of each day, timers and buttons are toggled and the noteBox appears to feed score info and feedback.
     gameActive = false; 
     buttonsToggle();
     setTimeout(function(){
@@ -288,6 +306,7 @@ function endOfDayCheck(){
     scoreUpdate.innerHTML = `You got ${dailyCorrect} out of 5`
     let score;
     score = dailyCorrect/5
+    // If the player score falls below 80%, then daysFailed +=1. Once it reaches 2, the gameOver function is invoked
     nextBtn.innerHTML=`Next Day`;
         if (score<=0.6){
             daysFailed += 1;
@@ -344,7 +363,7 @@ function noteBoxOn(){
 
 let id = document.querySelector('.catID-wrapper')
 
-
+//Unnecessary Konami Code
 let arr = [];
 window.addEventListener('keydown', e => {
     if(arr.length === 0 && e.keyCode === 38){
